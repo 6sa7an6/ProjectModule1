@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#checkAccount{
+    display: none;
+    color: red;
+}
+.container{
+    width: 500px;
+    height: 300px;
+    margin: 50px auto;
+    border: 1px solid black;
+    padding: 20px;
+}
+.container input{
+    width: 100%;
+    margin: 5px 0px 20px 0px;
+}
+.title{
+    text-align: center;
+    margin-top: 50px;
+}
+button{
+    width: 200px;
+}
