@@ -4,11 +4,13 @@ let login = () => {
     let password = document.getElementById('password').value.trim();
     for (let i = 0; i < users.length; i++) {
         if (users[i].email == email && users[i].password == password) {
-            if(users[i].role == ROLE_ADMIN){
+            localStorage.setItem('userId',users[i].id)
+            window.location.href = '../index.html'
+            /* if(users[i].role == ROLE_ADMIN){
                 window.location.href = '../page/admin.html'
             }else if(user[i].role == ROLE_USER){
                 window.location.href = '../index.html'
-            }
+            } */
         } else {
             document.getElementById('checkAccount').style.display = 'block'
         }

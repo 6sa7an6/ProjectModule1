@@ -17,7 +17,8 @@ register = () => {
         name: name,
         address : address,
         id: userId(),
-        role: ROLE_USER
+        cart : [],
+        /* role: ROLE_USER */
     }
     let checkEmail = users.find((user) => {
         return user.email == email
@@ -25,7 +26,7 @@ register = () => {
     if (!checkEmail && email != '' && password == confirmPassword) {
         users.push(user);
         localStorage.setItem('users', JSON.stringify(users));
-        window.location.href = "../page/loginpage.html"
+        window.location.href = "../page/login.html"
     } else if (email == '') {
         let checkEmail2 = document.getElementById('checkEmail2')
         checkEmail2.style.display = 'block'
