@@ -103,6 +103,7 @@ let popupDelete = (productId) => {
     document.getElementsByClassName('deleteItem')[0].setAttribute('onclick', `deleteItem(${productId})`);
 }
 let deleteItem = (productId) => {
+    let products = JSON.parse(localStorage.getItem('productList'))
     for (let i = 0; i < products.length; i++) {
         if (products[i].id == productId) {
             products.splice(i, 1)

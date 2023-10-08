@@ -6,6 +6,7 @@ let closeSearch = () => {
     document.getElementsByClassName('header__search')[0].style.display = 'none'
 }
 window.onload = () => {
+    let checkLoginAdmin = localStorage.getItem('adminId')
     let checkLogin = localStorage.getItem('userId');
     let users = JSON.parse(localStorage.getItem('users'));
     if (checkLogin) {
@@ -33,6 +34,24 @@ window.onload = () => {
                 `
             }
         }
+    }else if(checkLoginAdmin){
+        document.getElementsByClassName('header__right')[0].innerHTML = `
+                <ul>
+                <li><span onclick="clickSearch()" class="material-symbols-outlined">
+                        search
+                    </span></li>
+                <li>Xin chào ADMIN </li>
+                <li>
+                <a href="../page/admin.html"><span class="material-symbols-outlined">
+                person
+                </span></a>
+                </li>
+                <li onclick = 'logOut()'><span class="material-symbols-outlined">
+                logout
+                </span></a>
+                    </li>
+            </ul>
+                `
     }
 }
 window.onload();
@@ -47,7 +66,6 @@ let addToCart = (productId) => {
     let checkLogin = localStorage.getItem('userId');
     let users = JSON.parse(localStorage.getItem('users'));
     let products = JSON.parse(localStorage.getItem('productList'))
-
     if (checkLogin) {
         for (let i = 0; i < users.length; i++) {
             if (users[i].id == checkLogin) {
@@ -127,10 +145,17 @@ let showCount = () => {
 }
 showCount();
 let logOut = () => {
+    let checkLoginAdmin = localStorage.getItem('adminId')
     let checkLogin = localStorage.getItem('userId');
     let users = JSON.parse(localStorage.getItem('users'));
     if (checkLogin) {
         localStorage.removeItem('userId');
+        popup();
+        setInterval(() => {
+            updateUIAfterLogout();
+        }, 2000);
+    } else if (checkLoginAdmin) {
+        localStorage.removeItem('adminId');
         popup();
         setInterval(() => {
             updateUIAfterLogout();

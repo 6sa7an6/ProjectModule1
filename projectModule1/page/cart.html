@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/cart.css">
 </head>
+
 <body>
     <header>
         <header>
@@ -31,21 +34,22 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="../page/product.html">Sản phẩm</a>
-                                </li>   
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
-                <div class="header__logo"><a href="../home/index.html"><img src="../assets/logo/logo.png" alt="logo" width="150px" height="50px"></a></div>
+                <div class="header__logo"><a href="../home/index.html"><img src="../assets/logo/logo.png" alt="logo"
+                            width="150px" height="50px"></a></div>
                 <div class="header__right">
                     <ul>
                         <li><span onclick="clickSearch()" class="material-symbols-outlined">
                                 search
                             </span></li>
                         <li><a href="./page/login.html"><span class="material-symbols-outlined">
-                            person
-                        </span></a>
-                            </li>
+                                    person
+                                </span></a>
+                        </li>
                         <li>
                             <div class="cart">
                                 <a href="./page/cart.html"><span class="material-symbols-outlined">
@@ -74,7 +78,7 @@
         </header>
     </header>
     <section>
-        <div class="table-reponsive">
+        <div class="container__main table-reponsive">
             <table class="table table-bordered border-light table-striped">
                 <thead class="table-dark">
                     <tr>
@@ -90,7 +94,91 @@
                 </thead>
                 <tbody id="tbody">
                 </tbody>
+                <tfoot>
+                    <tr class="paymentButton">
+                        <td colspan="7"><button class="btn btn-success">Thanh toán sản phẩm</button></td>
+                        <td><button onclick="viewMore()" class="btn btn-primary">Xem thêm sản phẩm</button></td>
+                    </tr>
+                </tfoot>
             </table>
+        </div>
+        <div class="payment">
+            <div class="payment__infor">
+                <div class="payment__infor__container">
+                    <div class="payment__infor__main">
+                        <div class="payment__infor__user__title">
+                            <p>
+                            <h2>Thông tin của bạn</h2>
+                            </p>
+                        </div>
+                        <div class="payment__infor__user">
+                            <div class="payment__infor__user__main">
+                            </div>
+                            <div class="payment__infor__user__fix">
+                                <button onclick="updateInfor()" class="payment__infor__user__fix__btn btn btn-warning">Thay đổi thông tin</button>
+                                <button onclick="saveInfor()" class="payment__infor__user__fix__btn btn btn-info">Lưu thông tin</button>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <div class="payment__method">
+                            <div class="payment__method__select">
+                                <input id="visa" onclick="visa()" type="radio" name="method" value="Visa" checked>
+                                <label for="Visa">Visa</label>
+                                <input id="masterCard" onclick="masterCard()" type="radio" name="method" value="MasterCard">
+                                <label for="MasterCard">MasterCard</label>
+                                <input id ="cod" onclick="cod()" type="radio" name="method" value="COD">
+                                <label for="COD">COD</label>
+                            </div>
+                            <div class="payment__method__infor">
+                                <div class="payment__method__infor__1">
+                                    <div class="payment__method__infor__name">
+                                        <label for="name">Tên thẻ</label><br>
+                                        <input type="text" id="name" required>
+                                    </div>
+                                    <div class="payment__method__infor__number">
+                                        <label for="number">Số thẻ</label><br>
+                                        <input type="text" id="number" required>
+                                    </div>
+                                    </div>
+                                    <div class="payment__method__infor__2">
+                                        <div class="payment__method__infor__expiration">
+                                            <label for="expiration">Hạn thẻ</label><br>
+                                            <input type="month" id="expiration" required>
+                                        </div>
+                                        <div class="payment__method__infor__cvv">
+                                            <label for="cvv">CVV</label><br>
+                                            <input id="cvv" type="text" maxlength="4" required>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payment__infor__cart">
+                        <div class="payment__infor__cart__title">
+                            <h2>Giỏ hàng của bạn</h2>
+                        </div>
+                        <div class="payment__infor__cart__main">
+                            <table class="table table-bordered border-light table-striped">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <td>Ảnh sản phẩm</td>
+                                        <td>Tên sản phẩm</td>
+                                        <td>Số Lượng</td>
+                                        <td>Tổng giá</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="cart__tbody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup__confirm">
+                    <button onclick="sendPayment()" class="deleteItem btn btn-primary">Mua hàng</button>
+                    <button onclick="cancelPayment()" class="btn btn-secondary">Hủy bỏ</button>
+                </div>
+            </div>
         </div>
         <div class="popup">
             <div class="popup__content">
@@ -109,7 +197,7 @@
                     <div class="col-md-4 col-xs-12">
                         <div class="first">
                             <h4>Về chúng tôi</h4>
-                            <p>Với đội ngũ nhân viên tay nghề cao và trang thiết bị tân tiến nhất hiện nay chúng tôi 
+                            <p>Với đội ngũ nhân viên tay nghề cao và trang thiết bị tân tiến nhất hiện nay chúng tôi
                                 tự tin sẽ đưa những sản phẩm tuyệt vời nhất đến tay khách hàng.
                             </p>
                             <p>Xin chân thành cảm ơn quý khách hàng đã lựa chọn tin tưởng chúng tôi.</p>
@@ -152,7 +240,10 @@
             </div>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
     <script src="../js/renderCart.js"></script>
 </body>
+
 </html>

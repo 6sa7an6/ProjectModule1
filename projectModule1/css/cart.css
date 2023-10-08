@@ -112,25 +112,20 @@ header {
 }
 
 /* section */
-table {
+.container__main table {
     border: 1px solid black !important;
 }
 
 section {
     margin: 50px 50px;
 }
-
-tr,
-td {
+thead td{
     text-align: center;
-    padding: 15px;
-    vertical-align: middle;
+}
+tbody td{
+    text-align: center;
 }
 
-td img {
-    width: 200px;
-    height: 200px;
-}
 
 /* footer */
 .footer {
@@ -308,6 +303,7 @@ td img {
     }
 }
 
+
 .margin {
     margin-left: 20px;
 }
@@ -316,4 +312,115 @@ td img {
     height: 2px;
     background-color: rgb(206, 206, 206);
     width: 100%;
+}
+/* payment */
+.paymentButton{
+    text-align: right;
+}
+.paymentButton button{
+    height: 100px;
+}
+.container__main tr{
+    padding: 15px;
+    vertical-align: middle;
+}
+.container__main td{
+    padding: 15px;
+    vertical-align: middle;
+}
+
+.container__main td img {
+    width: 200px;
+    height: 200px;
+}
+.payment {
+    display: block;
+    position: fixed;
+    padding-top: 50px;
+    margin: 0 auto;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.payment__infor {
+    position: relative;
+    background-color: #FAFAFA;
+    padding: 15px;
+    margin: 20px auto;
+    width: 70%;
+    height: 70%;
+    text-align: center;
+}
+.payment__infor__container{
+    display: flex;
+    justify-content: space-between;
+}
+.payment__infor__user{
+    display: flex;
+}
+.payment__method__infor{
+    display: flex;
+}
+.popup__confirm{
+    margin-top: 50px;
+}
+.payment__method__infor__name input{
+    width: 300px;
+}
+.payment__method__infor__number input{
+    width: 300px;
+}
+.payment__method__infor__cvv input{
+    width: 45px;
+}
+.payment__method__infor__expiration input{
+    width: 150px;
+}
+.payment__method__infor__1{
+    margin-right:20px
+}
+.payment__method__select{
+    margin: 10px;
+}
+.payment__infor__user__fix__btn{
+    width: 100px;
+    height: 60px;
+    margin: 5px 0px;
+}
+.payment__infor__user__fix{
+    display: flex;
+    flex-direction: column;
+}
+.payment__infor__user{
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+.payment__infor__user__main table{
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+}
+.payment__infor__user__main td{
+    text-align: left;
+}
+.payment__infor__user__main input{
+    padding-left: 10px;
+    margin-left: 10px;
+}
+.payment__infor__cart__main img {
+    width: 50px;
+    height: 50px;
+}
+.popup__confirm{
+    display: flex;
+    gap: 100px;
+}
+img{
+    background-color: rgba(255, 254, 254, 0.9);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }

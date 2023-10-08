@@ -114,14 +114,15 @@ section {
     margin: 0px 400px;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 50px;
 }
 
 .container__item {
     width: 300px;
     height: 450px;
     text-align: center;
-    background-color: rgb(252, 248, 248);
+    background-color: rgba(252, 248, 248, 0.7);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .container__item img {

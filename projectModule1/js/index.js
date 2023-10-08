@@ -13,6 +13,7 @@ window.onload = () => {
     localStorage.setItem('admin', JSON.stringify(admin))
     let titleVideo = document.getElementsByClassName('video__title')[0];
     let checkLogin = localStorage.getItem('userId');
+    let checkLoginAdmin = localStorage.getItem('adminId')
     let users = JSON.parse(localStorage.getItem('users'));
     if (checkLogin) {
         for (let i = 0; i < users.length; i++) {
@@ -40,6 +41,25 @@ window.onload = () => {
                 `
             }
         }
+    } else if (checkLoginAdmin) {
+        titleVideo.style.display = 'none';
+        document.getElementsByClassName('header__right')[0].innerHTML = `
+        <ul>
+        <li><span onclick="clickSearch()" class="material-symbols-outlined">
+                search
+            </span></li>
+        <li>Xin chào ADMIN </li>
+        <li>
+        <a href="../page/admin.html"><span class="material-symbols-outlined">
+        person
+        </span></a>
+        </li>
+        <li onclick = 'logOut()'><span class="material-symbols-outlined">
+        logout
+        </span></a>
+            </li>
+    </ul>
+        `
     }
 }
 window.onload();
@@ -62,7 +82,7 @@ let productList = [
         stock: 9,
     },
     {
-        name: 'NT PG 1/60 Unicorn Gundam Unit 3 Phenex',
+        name: 'NT PG 1/60 Unicorn Unit 3 Phenex',
         price: 24000000,
         id: itemId(),
         src: '../assets/product/item3.jpg',
@@ -137,7 +157,7 @@ const VND = new Intl.NumberFormat('vi-VN', {
     currency: 'VND',
 });
 let products = JSON.parse(localStorage.getItem('productList'));
-if (products == null){
+if (products == null) {
     localStorage.setItem('productList', JSON.stringify(productList));
 }
 let renderProducts = (productList) => {
@@ -162,7 +182,6 @@ let addToCart = (productId) => {
     let checkLogin = localStorage.getItem('userId');
     let users = JSON.parse(localStorage.getItem('users'));
     let products = JSON.parse(localStorage.getItem('productList'))
-
     if (checkLogin) {
         for (let i = 0; i < users.length; i++) {
             if (users[i].id == checkLogin) {
@@ -214,10 +233,17 @@ showCount();
 //function tim kiem san pham
 // di sau nghien cuu ki thuat DEBOUNCE
 let logOut = () => {
+    let checkLoginAdmin = localStorage.getItem('adminId')
     let checkLogin = localStorage.getItem('userId');
     let users = JSON.parse(localStorage.getItem('users'));
     if (checkLogin) {
         localStorage.removeItem('userId');
+        popup();
+        setInterval(() => {
+            updateUIAfterLogout();
+        }, 2000);
+    } else if (checkLoginAdmin) {
+        localStorage.removeItem('adminId');
         popup();
         setInterval(() => {
             updateUIAfterLogout();
@@ -252,9 +278,9 @@ let order = () => {
     if (checkLogin) {
         for (let i = 0; i < users.length; i++) {
             if (users[i].id == checkLogin) {
-                if(users[i].role == 'active'){
+                if (users[i].role == 'active') {
                     window.location.href = '../page/cart.html'
-                }else{
+                } else {
                     document.getElementsByClassName('popup__block')[0].style.display = 'block';
                 }
             }
