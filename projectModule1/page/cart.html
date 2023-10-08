@@ -15,7 +15,7 @@
             <div class="header__main">
                 <nav class="header__left__nav navbar navbar-expand-lg bg-body-tertiary">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#">Trang chủ</a>
+                        <a class="navbar-brand" href="../home/index.html">Trang chủ</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -29,22 +29,14 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#contact">Liên hệ</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false">
-                                        Sản phẩm
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">AOSHIMA</a></li>
-                                        <li><a class="dropdown-item" href="#">BANDAI SPIRITS</a></li>
-                                        <li><a class="dropdown-item" href="#">MegaHouse</a></li>
-                                    </ul>
-                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../page/product.html">Sản phẩm</a>
+                                </li>   
                             </ul>
                         </div>
                     </div>
                 </nav>
-                <div class="header__logo"><img src="../assets/logo/logo.png" alt="logo" width="150px" height="50px"></div>
+                <div class="header__logo"><a href="../home/index.html"><img src="../assets/logo/logo.png" alt="logo" width="150px" height="50px"></a></div>
                 <div class="header__right">
                     <ul>
                         <li><span onclick="clickSearch()" class="material-symbols-outlined">
@@ -82,37 +74,84 @@
         </header>
     </header>
     <section>
-        <table border="1px">
-            <thead>
-                <tr>
-                    <td>STT</td>
-                    <td>Ảnh</td>
-                    <td>Id</td>
-                    <td>Tên sản phẩm</td>
-                    <td>Giá</td>
-                    <td>Số Lượng</td>
-                    <td>Tổng giá</td>
-                    <td>Hoạt động</td>
-                </tr>
-            </thead>
-            <tbody id="tbody">
-                <!-- <tr>
-                    <td>1</td>
-                    <td>Ảnh</td>
-                    <td>12</td>
-                    <td>50000</td>
-                    <td>
-                        <button>-</button>
-                        2
-                        <button>+</button>
-                    </td>
-                    <td>100000</td>
-                    <td>Xóa</td>
-                </tr> -->
-            </tbody>
-        </table>
+        <div class="table-reponsive">
+            <table class="table table-bordered border-light table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <td>STT</td>
+                        <td>Ảnh</td>
+                        <td>Id</td>
+                        <td>Tên sản phẩm</td>
+                        <td>Giá</td>
+                        <td>Số Lượng</td>
+                        <td>Tổng giá</td>
+                        <td>Hoạt động</td>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+        </div>
+        <div class="popup">
+            <div class="popup__content">
+                <p>Bạn chắc chắn muốn xóa ?</p>
+                <div class="popup__confirm">
+                    <button onclick="deleteItem()" class="deleteItem btn btn-danger">Xóa</button>
+                    <button onclick="cancelPopup()" class="btn btn-secondary">Hủy bỏ</button>
+                </div>
+            </div>
+        </div>
     </section>
-    <footer></footer>
+    <footer>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-xs-12">
+                        <div class="first">
+                            <h4>Về chúng tôi</h4>
+                            <p>Với đội ngũ nhân viên tay nghề cao và trang thiết bị tân tiến nhất hiện nay chúng tôi 
+                                tự tin sẽ đưa những sản phẩm tuyệt vời nhất đến tay khách hàng.
+                            </p>
+                            <p>Xin chân thành cảm ơn quý khách hàng đã lựa chọn tin tưởng chúng tôi.</p>
+                            <p>Mọi thông tin chi tiết xin liên hệ tới đội ngũ tư vấn : 09122xx34xxx.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-xs-12">
+                        <div class="second">
+                            <h4> Menu</h4>
+                            <ul>
+                                <li><a href="#">Trang chủ</a></li>
+                                <li><a href="#product">Sản phẩm</a></li>
+                                <li><a href="#moveto">Thông tin</a></li>
+                                <li><a href="#contact">Liên Hệ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-xs-12">
+                        <div class="third">
+                            <h4 id="contact"> Contact</h4>
+                            <ul>
+                                <li>Project của Vũ Việt Anh</li>
+                                <li></li>
+                                <li><i class="far fa-envelope"></i>Tà Shop</li>
+                                <li><i class="far fa-envelope"></i> vuvietanh29061995@gmail.com</li>
+                                <li><i class="fas fa-map-marker-alt"></i>Thanh Trì , Hà Nội</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div style="margin-bottom: 50px;" class="line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="../js/renderCart.js"></script>
 </body>

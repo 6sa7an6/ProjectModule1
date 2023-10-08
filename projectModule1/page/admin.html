@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+    <header>
+        <div class="header__main">
+            <nav class="header__left__nav navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="../home/index.html">Trang chủ</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#moveto">Giới thiệu</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#contact">Liên hệ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../page/product.html">Sản Phẩm</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="header__logo"><a href="../home/index.html"><img src="../assets/logo/logo.png" alt="logo"
+                        width="150px" height="50px"></a></div>
+            <div class="header__right">
+                <ul>
+                    <li>Xin chào ADMIN</li>
+                    <li onclick='logOut()'><span class="material-symbols-outlined">
+                            logout
+                        </span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="popup__logout">
+        <div class="popup__logout__content">
+            <p>Đang đăng xuất tài khoản</p>
+        </div>
+    </div>
+    <section>
+        <div class="container__users">
+            <div class="table-reponsive">
+                <table class="table table-bordered border-light table-striped">
+                    <p>
+                    <h2>Quản lý người dùng</h2>
+                    </p>
+                    <thead class="table-dark">
+                        <tr>
+                            <td>STT</td>
+                            <td>Email</td>
+                            <td>Password</td>
+                            <td>Id</td>
+                            <td>Tên user</td>
+                            <td>Địa chỉ</td>
+                            <td>Tình trạng</td>
+                            <td>Hoạt động</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody__users">
+                    </tbody>
+                </table>
+            </div>
+            <div class="popupBlock">
+                <div class="popupBlock__content">
+                    <p>Bạn chắc chắn muốn khóa người dùng này ?</p>
+                    <div class="popupBlock__confirm">
+                        <button onclick="blockUser()" class="blockUser btn btn-danger">Khóa</button>
+                        <button onclick="cancelPopupUser()" class="btn btn-secondary">Hủy bỏ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container__products">
+            <div class="table-reponsive">
+                <table class="table table-bordered border-light table-striped">
+                    <p>
+                    <h2>Quản lý sản phẩm</h2>
+                    </p>
+                    <p><button onclick="popupAddItem()" class="btn btn-primary btn-lg">Thêm sản phẩm mới</button></p>
+                    <!-- Thêm sản phẩm mới -->
+                    <div class="addItem">
+                        <div class="addItem__content">
+                            <h2>Thêm sản phẩm mới</h2>
+                            <div class="upImg">
+                                <label for="uploadImg">Ảnh sản phẩm</label>
+                                <input type="file" id="imageInput" accept=".jpg , .png , .img"><br>
+                            </div>
+                            <input type="text" id="itemName" placeholder="Tên sản phẩm"><br>
+                            <input type="text" id="itemPrice" placeholder="Giá sản phẩm"><br>
+                            <input type="text" id="itemStock" placeholder="Số lượng thêm vào"><br>
+                            <div class="addItem__confirm">
+                                <button onclick="addItem()" class="btn btn-primary">Thêm sản phẩm</button>
+                                <button onclick="cancelAddItem()" class="btn btn-secondary">Hủy bỏ</button>
+                            </div>
+                        </div>
+                    </div>
+                    <thead class="table-dark">
+                        <tr>
+                            <td>STT</td>
+                            <td>Ảnh</td>
+                            <td>Tên</td>
+                            <td>Id</td>
+                            <td>Giá</td>
+                            <td>Kho hàng</td>
+                            <td>Hoạt động</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody__products">
+                    </tbody>
+                </table>
+            </div>
+            <div class="popupDelete">
+                <div class="popupDelete__content">
+                    <p>Bạn chắc chắn muốn xóa sản phẩm này ?</p>
+                    <div class="popupDelete__confirm">
+                        <button onclick="deleteItem()" class="deleteItem btn btn-danger">Xóa</button>
+                        <button onclick="cancelPopupItem()" class="btn btn-secondary">Hủy bỏ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="../js/admin.js"></script>
+</body>
+
+</html>
