@@ -1,4 +1,33 @@
-
+//function pagination
+let start;
+let end;
+let perPage = 4;
+let currentPage = 1;
+let products = JSON.parse(localStorage.getItem('productList'));
+let totalPage = Math.ceil(products.length/perPage)
+let pagination = () => {
+    let text = '';
+    for(let i = 0 ; i < totalPage ; i++ ){
+        text += 
+        `
+        <li onclick=pageNow(${i+1}) >${i+1}</li>
+        `
+    }
+    document.getElementById('pages').innerHTML = text ;
+}
+pagination();
+//function showStartEnd
+let calculateStartEnd = (current) => {
+    start = (current - 1)*perPage;
+    end = current * perPage;
+}
+calculateStartEnd(currentPage)
+//function click page
+pageNow = (page) => {
+    currentPage = page;
+    calculateStartEnd(currentPage);
+    renderProducts(products);
+}
 let clickSearch = () => {
     document.getElementsByClassName('header__search')[0].style.display = 'block'
 }
@@ -96,19 +125,20 @@ let addToCart = (productId) => {
         document.getElementsByClassName('popup__login')[0].style.display = 'block';
     }
 }
-let products = JSON.parse(localStorage.getItem('productList'));
 let renderProducts = (productList) => {
     if (productList == undefined) {
         productList = [];
     }
     let text = '';
     for (let i = 0; i < productList.length; i++) {
-        text += `<div class="container__item">
+        if(i>=start && i<end){
+            text += `<div class="container__item">
         <img src="${productList[i].src}" alt="item1">
         <p class="item__name">${productList[i].name}</p>
         <p>${VND.format(productList[i].price)}</p>
         <p><button onclick = 'addToCart(${productList[i].id})' type="button" class=" item__buy btn btn-secondary btn-lg">Mua</button></p>
     </div>`
+        }
     }
     document.getElementsByClassName('container__list')[0].innerHTML = text
 }
@@ -151,13 +181,13 @@ let logOut = () => {
     if (checkLogin) {
         localStorage.removeItem('userId');
         popup();
-        setInterval(() => {
+        setTimeout(() => {
             updateUIAfterLogout();
         }, 2000);
     } else if (checkLoginAdmin) {
         localStorage.removeItem('adminId');
         popup();
-        setInterval(() => {
+        setTimeout(() => {
             updateUIAfterLogout();
         }, 2000);
     }

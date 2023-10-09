@@ -77,6 +77,11 @@
             </div>
         </header>
     </header>
+    <div class="popup popup__logout">
+        <div class="popup__content popup__logout__content">
+            <p>Đang đăng xuất tài khoản</p>
+        </div>
+    </div>
     <section>
         <div class="container__main table-reponsive">
             <table class="table table-bordered border-light table-striped">
@@ -96,8 +101,9 @@
                 </tbody>
                 <tfoot>
                     <tr class="paymentButton">
-                        <td colspan="7"><button class="btn btn-success">Thanh toán sản phẩm</button></td>
-                        <td><button onclick="viewMore()" class="btn btn-primary">Xem thêm sản phẩm</button></td>
+                        <td colspan="8"><button onclick="payment()" class="btn btn-success">Thanh toán sản phẩm</button>
+                            <button onclick="viewMore()" class="btn btn-primary">Xem thêm sản phẩm</button>
+                        </td>
                     </tr>
                 </tfoot>
             </table>
@@ -174,14 +180,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="popup__confirm">
-                    <button onclick="sendPayment()" class="deleteItem btn btn-primary">Mua hàng</button>
+                <div class="popup__payment__confirm">
+                    <button onclick="sendPayment()" class="paymentbtn btn btn-primary">Mua hàng</button>
                     <button onclick="cancelPayment()" class="btn btn-secondary">Hủy bỏ</button>
                 </div>
             </div>
         </div>
-        <div class="popup">
-            <div class="popup__content">
+        <div class="popup popup__delete">
+            <div class="popup__content popup__delete__content">
                 <p>Bạn chắc chắn muốn xóa ?</p>
                 <div class="popup__confirm">
                     <button onclick="deleteItem()" class="deleteItem btn btn-danger">Xóa</button>
@@ -243,7 +249,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-    <script src="../js/renderCart.js"></script>
+    <script src="../js/cart.js"></script>
 </body>
 
 </html>

@@ -350,9 +350,9 @@ tbody td{
     position: relative;
     background-color: #FAFAFA;
     padding: 15px;
-    margin: 20px auto;
+    margin: 150px auto;
     width: 70%;
-    height: 70%;
+    height: 57%;
     text-align: center;
 }
 .payment__infor__container{
@@ -416,11 +416,18 @@ tbody td{
     width: 50px;
     height: 50px;
 }
-.popup__confirm{
+.popup__payment__confirm{
     display: flex;
     gap: 100px;
 }
-img{
+section img{
     background-color: rgba(255, 254, 254, 0.9);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.paymentButton button{
+    margin: 0px 20px;
+}
+.payment__infor__cart__main{
+    height: 400px;
+    overflow: auto;
 }

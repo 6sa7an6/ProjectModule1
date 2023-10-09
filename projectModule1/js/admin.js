@@ -69,7 +69,7 @@ let logOut = () => {
     if (checkLogin) {
         localStorage.removeItem('adminId');
         document.getElementsByClassName('popup__logout')[0].style.display = 'block';
-        setInterval(() => {
+        setTimeout(() => {
             window.location.href = '../home/index.html'
         }, 2000);
     }

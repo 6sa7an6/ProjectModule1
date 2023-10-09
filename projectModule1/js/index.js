@@ -176,9 +176,10 @@ let renderProducts = (productList) => {
     }
     document.getElementsByClassName('container__list')[0].innerHTML = text
 }
-renderProducts(productList);
+renderProducts(products);
 
 let addToCart = (productId) => {
+    console.log(productId);
     let checkLogin = localStorage.getItem('userId');
     let users = JSON.parse(localStorage.getItem('users'));
     let products = JSON.parse(localStorage.getItem('productList'))
@@ -239,13 +240,13 @@ let logOut = () => {
     if (checkLogin) {
         localStorage.removeItem('userId');
         popup();
-        setInterval(() => {
+        setTimeout(() => {
             updateUIAfterLogout();
         }, 2000);
     } else if (checkLoginAdmin) {
         localStorage.removeItem('adminId');
         popup();
-        setInterval(() => {
+        setTimeout(() => {
             updateUIAfterLogout();
         }, 2000);
     }

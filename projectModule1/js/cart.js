@@ -136,7 +136,7 @@ decrease = (productId) => {
     }
 }
 popup = (productId) => {
-    document.getElementsByClassName('popup')[0].style.display = 'block';
+    document.getElementsByClassName('popup__delete')[0].style.display = 'block';
     document.getElementsByClassName('deleteItem')[0].setAttribute('onclick', `deleteItem(${productId})`);
 }
 deleteItem = (productId) => {
@@ -150,7 +150,7 @@ deleteItem = (productId) => {
                         users[i].cart.splice(j, 1)
                         localStorage.setItem('users', JSON.stringify(users));
                         renderCart();
-                        document.getElementsByClassName('popup')[0].style.display = 'none'
+                        document.getElementsByClassName('popup__delete')[0].style.display = 'none'
                         showCount();
                     }
                 }
@@ -196,10 +196,10 @@ let payment = () => {
                     <td><input id="phoneUser" type="text" placeholder="Hãy nhập số điện thoại"></td>
                 </tr>
             </table>`
-            for(let j = 0 ; j < users[i].cart.length ; j++ ){
-                total += users[i].cart[j].price * users[i].cart[j].quantity;
-                text += 
-                `
+                for (let j = 0; j < users[i].cart.length; j++) {
+                    total += users[i].cart[j].price * users[i].cart[j].quantity;
+                    text +=
+                        `
                 <tr>
                     <td><img src="${users[i].cart[j].src}" alt=""></td>
                     <td>${users[i].cart[j].name}</td>
@@ -207,9 +207,9 @@ let payment = () => {
                     <td>${VND.format(users[i].cart[j].price * users[i].cart[j].quantity)}</td>
                 </tr>
                 `
-            }
-            document.getElementById('cart__tbody').innerHTML = 
-            `
+                }
+                document.getElementById('cart__tbody').innerHTML =
+                    `
             ${text}
             <tr class="table-dark">
                 <td colspan='3'> Tổng giá giỏ hàng </td>
@@ -224,38 +224,38 @@ let saveInfor = () => {
     document.getElementById('visa').disabled = true;
     document.getElementById('masterCard').disabled = true;
     document.getElementById('cod').disabled = true;
-    document.getElementById('nameUser').readOnly = true ;
+    document.getElementById('nameUser').readOnly = true;
     document.getElementById('nameUser').style.opacity = '0.5';
-    document.getElementById('addressUser').readOnly = true ;
+    document.getElementById('addressUser').readOnly = true;
     document.getElementById('addressUser').style.opacity = '0.5'
-    document.getElementById('phoneUser').readOnly = true ;
+    document.getElementById('phoneUser').readOnly = true;
     document.getElementById('phoneUser').style.opacity = '0.5'
-    document.getElementById('name').readOnly = true ;
+    document.getElementById('name').readOnly = true;
     document.getElementById('name').style.opacity = '0.5'
-    document.getElementById('number').readOnly = true ;
+    document.getElementById('number').readOnly = true;
     document.getElementById('number').style.opacity = '0.5'
-    document.getElementById('expiration').readOnly = true ;
+    document.getElementById('expiration').readOnly = true;
     document.getElementById('expiration').style.opacity = '0.5'
-    document.getElementById('cvv').readOnly = true ;
+    document.getElementById('cvv').readOnly = true;
     document.getElementById('cvv').style.opacity = '0.5'
 }
 let updateInfor = () => {
     document.getElementById('visa').disabled = false;
     document.getElementById('masterCard').disabled = false;
     document.getElementById('cvv').disabled = false;
-    document.getElementById('nameUser').readOnly = false ;
+    document.getElementById('nameUser').readOnly = false;
     document.getElementById('nameUser').style.opacity = '1';
-    document.getElementById('addressUser').readOnly = false ;
+    document.getElementById('addressUser').readOnly = false;
     document.getElementById('addressUser').style.opacity = '1';
-    document.getElementById('phoneUser').readOnly = false ;
+    document.getElementById('phoneUser').readOnly = false;
     document.getElementById('phoneUser').style.opacity = '1';
     document.getElementById('name').readOnly = false;
     document.getElementById('name').style.opacity = '1';
-    document.getElementById('number').readOnly = false ;
+    document.getElementById('number').readOnly = false;
     document.getElementById('number').style.opacity = '1';
-    document.getElementById('expiration').readOnly = false ;
+    document.getElementById('expiration').readOnly = false;
     document.getElementById('expiration').style.opacity = '1';
-    document.getElementById('cvv').readOnly = false ;
+    document.getElementById('cvv').readOnly = false;
     document.getElementById('cvv').style.opacity = '1';
 }
 let visa = () => {
@@ -267,3 +267,17 @@ let masterCard = () => {
 let cod = () => {
     document.getElementsByClassName('payment__method__infor')[0].style.opacity = '0';
 };
+let logOut = () => {
+    let checkLogin = localStorage.getItem('userId');
+    let users = JSON.parse(localStorage.getItem('users'));
+    if (checkLogin) {
+        localStorage.removeItem('userId');
+        popupLogOut();
+        setTimeout(() => {
+            window.location.href = '../home/index.html';
+        }, 2000);
+    }
+}
+let popupLogOut = () => {
+    document.getElementsByClassName('popup__logout')[0].style.display = 'block';
+}

@@ -23,7 +23,6 @@ header {
     justify-content: space-between;
     width: 100%;
     padding: 10px;
-    align-items: center;
 }
 
 .header__left__nav {
@@ -121,7 +120,7 @@ header {
 }
 /* css product */
 .container__list {
-    margin: 50px 100px;
+    margin: 50px 100px 20px;
     display: flex;
     justify-content: center;
     gap: 50px;
@@ -351,3 +350,34 @@ header {
     margin-top: 100px;
     margin-bottom: 100px;
 }
+/* pagination */
+.pagination{
+    display: flex;
+    width: 300px;
+    margin: 0 auto;
+    justify-content: space-between;
+    height: 40px;
+    background-color: white;
+    align-items: center;
+    padding-top: 15px;
+}
+.pagination ul{
+    padding: 0;
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    align-items: center;
+}
+.pagination ul li{
+    width: 30px;
+    height: 30px;
+    color: white;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.pagination ul li:hover {
+    background-color: crimson;
+  }
