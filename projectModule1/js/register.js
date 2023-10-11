@@ -18,6 +18,7 @@ register = () => {
         cart : [],
         role : 'active',
         count : 0,
+        order : [],
     }
     let checkEmail = users.find((user) => {
         return user.email == email

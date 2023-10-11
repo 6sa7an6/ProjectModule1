@@ -1,3 +1,6 @@
+orderId = () => {
+    return Math.floor(Math.random() * 100000)
+}
 document.getElementsByClassName('payment')[0].style.display = 'none';
 window.onload = () => {
     let checkLoginAdmin = localStorage.getItem('adminId')
@@ -280,4 +283,49 @@ let logOut = () => {
 }
 let popupLogOut = () => {
     document.getElementsByClassName('popup__logout')[0].style.display = 'block';
+}
+let paymentMethod = () => {
+    let radios = document.getElementsByName('method');
+    for(let i = 0 ; i < radios.length ; i++){
+        if(radios[i].checked){
+            return radios[i].value;
+        }
+    }
+}
+let sendPayment = () => {
+    let checkLogin = localStorage.getItem('userId');
+    let users = JSON.parse(localStorage.getItem('users'));
+    let orderName = document.getElementById('nameUser').value;
+    let orderAddress = document.getElementById('addressUser').value;
+    let orderPhone = document.getElementById('phoneUser').value;
+    let cardName = document.getElementById('name').value;
+    let cardNumber = document.getElementById('number').value;
+    let expiration = document.getElementById('expiration').value;
+    let cvv = document.getElementById('cvv').value;
+    let cartProduct = []
+    let orderInfor = {
+        id : orderId(),
+        cartProduct : cartProduct,
+        orderName : orderName ,
+        orderAddress : orderAddress,
+        orderPhone : orderPhone,
+        cardName : cardName,
+        cardNumber : cardNumber,
+        expiration : expiration,
+        cvv : cvv ,
+        method : paymentMethod(),
+    }
+    if(checkLogin){
+        for(let i = 0 ; i < users.length ; i++){
+            if(users[i].id == checkLogin){
+            orderInfor.cartProduct = [...users[i].cart];
+            users[i].order.push(orderInfor);
+            users[i].cart = [];
+            }
+        }
+        localStorage.setItem('users',JSON.stringify(users))
+    }
+    document.getElementsByClassName('payment')[0].style.display = 'none';
+    alert('Cảm ơn bạn đã tin tưởng vào sản phẩm của chúng tôi , chúng tôi sẽ gửi hàng với thời gian ngắn nhất')
+    window.location.href = '../page/product.html'
 }

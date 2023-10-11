@@ -3,6 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    background-image: url(../assets/logo/backgroundregister.jpg);
+    background-size: cover;
+}
 #checkEmail1{
     display: none;
     color: red;

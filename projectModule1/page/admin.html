@@ -58,10 +58,10 @@
     </div>
     <section>
         <div class="container__users">
-            <div class="table-reponsive">
+            <p><h2>Quản lý người dùng</h2></p>
+            <div class="usersManage table-reponsive">
                 <table class="table table-bordered border-light table-striped">
                     <p>
-                    <h2>Quản lý người dùng</h2>
                     </p>
                     <thead class="table-dark">
                         <tr>
@@ -91,12 +91,10 @@
         </div>
         <hr>
         <div class="container__products">
-            <div class="table-reponsive">
+            <p><h2>Quản lý sản phẩm</h2></p>
+            <p><button onclick="popupAddItem()" class="btn btn-primary btn-lg">Thêm sản phẩm mới</button></p>
+            <div class="productsManage table-reponsive">
                 <table class="table table-bordered border-light table-striped">
-                    <p>
-                    <h2>Quản lý sản phẩm</h2>
-                    </p>
-                    <p><button onclick="popupAddItem()" class="btn btn-primary btn-lg">Thêm sản phẩm mới</button></p>
                     <!-- Thêm sản phẩm mới -->
                     <div class="addItem">
                         <div class="addItem__content">
@@ -139,6 +137,73 @@
                 </div>
             </div>
         </div>
+        <hr>
+        <div class="container__order">
+            <p><h2>Quản lý đơn đặt hàng của khách</h2></p>
+            <div class="orderInfor table-reponsive">
+                <table class="table table-bordered border-light table-striped">
+                    <p>
+                    </p>
+                    <thead class="table-dark">
+                        <tr>
+                            <td>ID Đơn hàng</td>
+                            <td>ID Người dùng</td>
+                            <td>Tên người nhận</td>
+                            <td>Địa chỉ giao hàng</td>
+                            <td>Phương thức thanh toán</td>
+                            <td>Sản phẩm đặt hàng</td>
+                            <td>Xử lý đơn hàng</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody__order">
+                    </tbody>
+                </table>
+            </div>
+            <div class="payment__product payment">
+                <div class="payment__infor__product payment__infor">
+                    <div class="payment__infor__order__title">
+                        <h2>Giỏ hàng của khách</h2>
+                    </div>
+                    <div class="payment__infor__order__main">
+                        <table class="table table-bordered border-light table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <td>Ảnh sản phẩm</td>
+                                    <td>Tên sản phẩm</td>
+                                    <td>Số Lượng</td>
+                                    <td>Tổng giá</td>
+                                </tr>
+                            </thead>
+                            <tbody id="payment__infor__order__tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div><button class="btn btn-secondary" onclick="cancelPopupPaymentProduct()">Hủy bỏ</button></div>
+                </div>
+            </div>
+            <div class="payment__method payment">
+                <div class="payment__infor__method payment__infor">
+                    <div class="payment__infor__method__title">
+                        <h2>Phương thức thanh toán của khách</h2>
+                    </div>
+                    <div class="payment__infor__method__main">
+                        <table class="table table-bordered border-light table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <td>ID đơn hàng</td>
+                                    <td>Phương thức thanh toán</td>
+                                    <td>Tên thẻ</td>
+                                    <td>Số thẻ</td>
+                                    <td>CVV</td>
+                                </tr>
+                            </thead>
+                            <tbody id="payment__infor__method__tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div><button class="btn btn-secondary" onclick="cancelPopupMethod()">Hủy bỏ</button></div>
+                </div>
+            </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"

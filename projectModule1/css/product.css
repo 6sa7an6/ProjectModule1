@@ -376,8 +376,15 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
+    cursor: pointer !important;
 }
 .pagination ul li:hover {
     background-color: crimson;
   }
+.pagination__button__choose{
+    background-color: crimson !important;
+}
+.pagination span:hover{
+    color: red;
+    cursor: pointer;
+}

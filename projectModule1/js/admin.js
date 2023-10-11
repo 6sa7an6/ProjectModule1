@@ -1,3 +1,7 @@
+const VND = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
+});
 //Quản lý user
 renderUsers = () => {
     let users = JSON.parse(localStorage.getItem('users'));
@@ -123,9 +127,9 @@ itemId = () => {
 }
 let imgSrc = '';
 let imageInput = document.getElementById('imageInput');
-imageInput.addEventListener('change',(event)=>{
+imageInput.addEventListener('change', (event) => {
     let selectedFile = event.target.files[0];
-    if(selectedFile){
+    if (selectedFile) {
         let reader = new FileReader();
         reader.onload = (i) => {
             imgSrc = i.target.result;
@@ -157,4 +161,85 @@ let addItem = () => {
     localStorage.setItem('productList', JSON.stringify(products));
     document.getElementsByClassName('addItem')[0].style.display = 'none';
     renderProducts(products);
+}
+let renderOrder = () => {
+    let users = JSON.parse(localStorage.getItem('users'));
+    let text = '';
+    for (let i = 0; i < users.length; i++) {
+        for (let j = 0; j < users[i].order.length; j++) {
+            text += `<tr>
+                <td>${users[i].order[j].id}</td>
+                <td>${users[i].id}</td>
+                <td>${users[i].order[j].orderName}</td>
+                <td>${users[i].order[j].orderAddress}</td>
+                <td><button class="action btn btn-primary" onclick = "showMethod(${users[i].order[j].id})">Xem phương thức thanh toán</button></td>
+                <td><button class="action btn btn-info" onclick = "showOrder(${users[i].order[j].id})">Xem sản phẩm đặt hàng</button></td>
+                <td><button class="action btn btn-success" onclick = "sendOrder(${users[i].order[j].id})">Gửi hàng</button>
+                <button class="action btn btn-danger" onclick = "deleteOrder(${users[i].order[j].id})">Hủy đơn hàng</button>
+                </td>
+            </tr>
+            `
+        }
+    }
+    document.getElementById('tbody__order').innerHTML = text;
+}
+renderOrder();
+let showOrder = (id) => {
+    document.getElementsByClassName('payment__product')[0].style.display = 'block';
+    let users = JSON.parse(localStorage.getItem('users'));
+    let text = '';
+    let total = 0;
+    for(let i = 0 ; i < users.length ; i++){
+        for(let j = 0 ; j < users[i].order.length;j++){
+            if(users[i].order[j].id == id){
+                document.getElementsByClassName('payment__infor__order__title')[0].innerHTML = `<h2>Giỏ hàng của id khách ${users[i].id}</h2>`
+                for(let k = 0 ; k < users[i].order[j].cartProduct.length ; k++){
+                    total += users[i].order[j].cartProduct[k].price * users[i].order[j].cartProduct[k].quantity;
+                    text +=
+                        `
+                <tr>
+                    <td><img src="${users[i].order[j].cartProduct[k].src}" alt=""></td>
+                    <td>${users[i].order[j].cartProduct[k].name}</td>
+                    <td>${users[i].order[j].cartProduct[k].quantity}</td>
+                    <td>${VND.format(users[i].order[j].cartProduct[k].price * users[i].order[j].cartProduct[k].quantity)}</td>
+                </tr>
+                `
+                }
+                document.getElementById('payment__infor__order__tbody').innerHTML = 
+                `
+            ${text}
+            <tr class="table-dark">
+                <td colspan='3'> Tổng giá giỏ hàng </td>
+                <td>${VND.format(total)}</td>
+            </tr>
+            `
+            }
+        }
+    }
+}
+let cancelPopupPaymentProduct=()=>{
+    document.getElementsByClassName('payment__product')[0].style.display = 'none';
+}
+let showMethod = (id) => {
+    document.getElementsByClassName('payment__method')[0].style.display = 'block';
+    let users = JSON.parse(localStorage.getItem('users'));
+    let text = '';
+    for(let i = 0 ; i < users.length;i++){
+        for(let j = 0 ; j < users[i].order.length;j++){
+            document.getElementsByClassName('payment__infor__method__title')[0].innerHTML = `<h2>Phương thức thanh toán của id khách ${users[i].id}</h2>`
+            text += `
+            <tr>
+                                    <td>${users[i].order[j].id}</td>
+                                    <td>${users[i].order[j].method}</td>
+                                    <td>${users[i].order[j].orderName}</td>
+                                    <td>${users[i].order[j].orderAddress}</td>
+                                    <td>${users[i].order[j].cvv}</td>
+                                </tr>
+            `
+        }
+    }
+    document.getElementById('payment__infor__method__tbody').innerHTML = text;
+}
+let cancelPopupMethod = () => {
+    document.getElementsByClassName('payment__method payment')[0].style.display = 'none'
 }

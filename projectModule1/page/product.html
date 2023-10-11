@@ -71,7 +71,7 @@
             <div onclick="closeSearch()" class="header__search__close"><span class="material-symbols-outlined">
                     close
                 </span></div>
-            <input  id="search" oninput="search()"  type="text" placeholder="Tìm kiếm...">
+            <input  id="search" onclick="search()"  type="text" placeholder="Tìm kiếm...">
             <div class="header__search__trends">
                 <p>Tìm kiếm theo trends</p>
                 <div class="header__search__button">
@@ -133,21 +133,16 @@
     </section>
     <div class="pagination">
         <div class="pagination__prev">
-            <span class="material-symbols-outlined">
+            <span onclick="paginationPre()" class="material-symbols-outlined">
                 arrow_back_ios_new
                 </span>
         </div>
         <div class="pagination__main">
             <ul id="pages">
-                <!-- <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li> -->
             </ul>
         </div>
         <div class="pagination__next">
-            <span class="material-symbols-outlined">
+            <span onclick="paginationNext()" class="material-symbols-outlined">
                 arrow_forward_ios
               </span>
         </div>

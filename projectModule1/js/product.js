@@ -1,32 +1,79 @@
-//function pagination
+const VND = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
+});
 let start;
 let end;
 let perPage = 4;
 let currentPage = 1;
 let products = JSON.parse(localStorage.getItem('productList'));
-let totalPage = Math.ceil(products.length/perPage)
+let totalPage = Math.ceil(products.length / perPage)
+let renderProducts = (productList) => {
+    if (productList == undefined) {
+        productList = [];
+    }
+    let text = '';
+    for (let i = 0; i < productList.length; i++) {
+        if (i >= start && i < end) {
+            text += `<div class="container__item">
+        <img src="${productList[i].src}" alt="item1">
+        <p class="item__name">${productList[i].name}</p>
+        <p>${VND.format(productList[i].price)}</p>
+        <p><button onclick = 'addToCart(${productList[i].id})' type="button" class=" item__buy btn btn-secondary btn-lg">Mua</button></p>
+    </div>`
+        }
+    }
+    document.getElementsByClassName('container__list')[0].innerHTML = text
+}
+renderProducts(products);
+//function pagination
+
 let pagination = () => {
     let text = '';
-    for(let i = 0 ; i < totalPage ; i++ ){
-        text += 
-        `
-        <li onclick=pageNow(${i+1}) >${i+1}</li>
+    for (let i = 0; i < totalPage; i++) {
+        text +=
+            `
+        <li class='pagination__button' onclick=pageNow(${i + 1}) >${i + 1}</li>
         `
     }
-    document.getElementById('pages').innerHTML = text ;
+    document.getElementById('pages').innerHTML = text;
 }
 pagination();
 //function showStartEnd
 let calculateStartEnd = (current) => {
-    start = (current - 1)*perPage;
+    start = (current - 1) * perPage;
     end = current * perPage;
 }
 calculateStartEnd(currentPage)
 //function click page
 pageNow = (page) => {
+    let pages = document.getElementsByClassName('pagination__button')
+    for (let i = 0; i < pages.length; i++) {
+        if (page - 1 == i) {
+            pages[i].classList.add('pagination__button__choose')
+        } else {
+            pages[i].classList.remove('pagination__button__choose')
+        }
+    }
     currentPage = page;
     calculateStartEnd(currentPage);
     renderProducts(products);
+}
+pageNow(1);
+let paginationPre = (page) => {
+    console.log(currentPage);
+    if(currentPage > 1){
+        currentPage = currentPage - 1;
+    }
+    pageNow(currentPage);
+}
+let paginationNext = (page) => {
+    console.log(currentPage);
+    if(currentPage < totalPage){
+        currentPage = currentPage + 1;
+    }
+    pageNow(currentPage);
+    
 }
 let clickSearch = () => {
     document.getElementsByClassName('header__search')[0].style.display = 'block'
@@ -63,7 +110,7 @@ window.onload = () => {
                 `
             }
         }
-    }else if(checkLoginAdmin){
+    } else if (checkLoginAdmin) {
         document.getElementsByClassName('header__right')[0].innerHTML = `
                 <ul>
                 <li><span onclick="clickSearch()" class="material-symbols-outlined">
@@ -87,10 +134,7 @@ window.onload();
 let cancelPopup = () => {
     document.getElementsByClassName('popup__login')[0].style.display = 'none'
 }
-const VND = new Intl.NumberFormat('vi-VN', {
-    style: 'currency',
-    currency: 'VND',
-});
+
 let addToCart = (productId) => {
     let checkLogin = localStorage.getItem('userId');
     let users = JSON.parse(localStorage.getItem('users'));
@@ -125,30 +169,25 @@ let addToCart = (productId) => {
         document.getElementsByClassName('popup__login')[0].style.display = 'block';
     }
 }
-let renderProducts = (productList) => {
-    if (productList == undefined) {
-        productList = [];
-    }
-    let text = '';
-    for (let i = 0; i < productList.length; i++) {
-        if(i>=start && i<end){
-            text += `<div class="container__item">
-        <img src="${productList[i].src}" alt="item1">
-        <p class="item__name">${productList[i].name}</p>
-        <p>${VND.format(productList[i].price)}</p>
-        <p><button onclick = 'addToCart(${productList[i].id})' type="button" class=" item__buy btn btn-secondary btn-lg">Mua</button></p>
-    </div>`
-        }
-    }
-    document.getElementsByClassName('container__list')[0].innerHTML = text
-}
-renderProducts(products);
+function debounce(func, delay) {
+    let timeoutId;
+  
+    return function() {
+      const context = this;
+      const args = arguments;
+  
+      clearTimeout(timeoutId);
+  
+      timeoutId = setTimeout(function() {
+        func.apply(context, args);
+      }, delay);
+    };
+  }
 let search = () => {
     let inputValue = document.getElementById('search').value;
     let result = products.filter((item) => {
         return item.name.indexOf(inputValue) != -1;
     })
-    console.log(result);
     if (result.length != 0) {
         renderProducts(result);
     }
@@ -156,6 +195,8 @@ let search = () => {
         renderProducts();
     }
 }
+let findItem = debounce(search,1000);
+document.getElementById('search').addEventListener('keyup',findItem);
 let showCount = () => {
     let checkLogin = localStorage.getItem('userId');
     let users = JSON.parse(localStorage.getItem('users'));
@@ -217,9 +258,9 @@ let order = () => {
     if (checkLogin) {
         for (let i = 0; i < users.length; i++) {
             if (users[i].id == checkLogin) {
-                if(users[i].role == 'active'){
+                if (users[i].role == 'active') {
                     window.location.href = '../page/cart.html'
-                }else{
+                } else {
                     document.getElementsByClassName('popup__block')[0].style.display = 'block';
                 }
             }
